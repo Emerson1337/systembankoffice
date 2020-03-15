@@ -1,86 +1,102 @@
-#include stdio.h
+#include <stdio.h>
 
 
-Sistema feito por Emerson Lucena dos Santos
-Aluno do curso de Ciência da Computação - UECE
-1° Semestre.
-
-
-
-
+//System of: Emerson Lucena dos Santos.
+//Science Computer student - UECE.
+//First half.
+//Comments in Portuguese - BR.
 
 int main() {
 
-  FILE dados;
-  dados = fopen(dados.txt, wra);
-
-  int resp,op,count,conta[10],i,num;
-  float saldo[10];
-
+  int resp,op,count=0,conta[20],i,num,num2;
+  float saldo[20];
+    
   do{
-    printf(_______________________________________________________________nn);
-    printf(Bem vindo ao banco da Coreia do Norte. Aqui amamos o capitalismo.n);
-  printf(Qual operação deseja realizarnn);
-  printf(1 - Cadastrar conta bancária.n2 - Depósito.n3 - Sacar um determinado valor.n4 - Transferir um valor.n5 - Listar contas cadastradas.);
-printf(n_______________________________________________________________nn);
+  
+        bool find = true; //Definindo variÃ¡vel booleana para verificaÃ§Ã£o de contas jÃ¡ cadastradas.
+        
+  printf("_______________________________________________________________\n\n");
+  printf("Bem vindo ao banco da Coreia do Norte. Aqui amamos o capitalismo.\n");
+  printf("Qual operaÃ§Ã£o deseja realizar?\n\n");
+  printf("1 - Cadastrar conta bancÃ¡ria.\n2 - DepÃ³sito.\n3 - Sacar um determinado valor.\n4 - Transferir um valor.\n5 - Listar contas cadastradas.");
+printf("\n_______________________________________________________________\n\n");
 
-scanf(%d, &op);
+scanf("%d", &op);
 
 switch(op){
 
-  case 1
-  printf(nInsira o número da conta bancária em 6 (seis) dígitos abaixonn);
-  scanf(%d, &conta[count]);
-
-  if(conta[count]=999999 &&  conta[count]=100000){
+//Primeiro caso: cadastramento de contas.
+  case 1:
+  printf("\nInsira o nÃºmero da conta bancÃ¡ria em 6 (seis) dÃ­gitos abaixo:\n\n");
+  scanf("%d", &num2);
+                
+  if(num2>999999 || num2<100000){
+     printf("\nA conta precisa ter 6 dÃ­gitos\n");
+    break;
+  } 
+                                                        
+ for(i = 0; i<=count; i++){
+   if(conta[i]==num2){ 
+    printf("\nEssa conta jÃ¡ estÃ¡ cadastrada no sistema!");           
+    find = false;                    
+    break;
+   } 
+}
+ 
+ if(find){        
+    conta[count]=num2;
     saldo[count]=0;
     count++;
-    printf(nConta cadastrada com sucesso!nn);
-    
-  } else {
-    printf(nA conta precisa ter 6 dígitosn);
-  }
+    printf("\nConta cadastrada com sucesso!\n\n");            
+      break;          
+            }           
  break;
 
- case 2
- printf(nDigite o número da conta que deseja depositarn);
- scanf(%d, &num);
 
-for (i = 0; icount; i++){
+
+//Segundo caso: DepÃ³sito em contas.
+ case 2:
+ printf("\nDigite o nÃºmero da conta que deseja depositar:\n");
+ scanf("%d", &num);
+
+for (i = 0; i<count; i++){
 
  if(conta[i]==num){  
-   printf(nQuanto deseja depositarn);
-   scanf(%f, &saldo[i]);
-   printf(nQuantia despositada com sucesso!n);
+   printf("\nQuanto deseja depositar?\n");
+   scanf("%f", &saldo[i]);
+   printf("\nQuantia despositada com sucesso!\n");
    break;
    } 
 } 
 
  if(conta[i]!=num){
-    printf(nEssa conta não está cadastrada no sistema.n);
+    printf("\nEssa conta nÃ£o estÃ¡ cadastrada no sistema.\n");
     break;
   }
 
   break;
 
- case 3
- printf(nDigite a conta que deseja sacarn);
- scanf(%d, &num);
 
- for (i = 0; i=count; i++){ 
+
+//Terceiro caso: saque de dinheiro das contas cadastradas.
+ case 3:
+ printf("\nDigite a conta que deseja sacar:\n");
+ scanf("%d", &num);
+
+ for (i = 0; i<=count; i++){ 
 
    if(conta[i]==num){
 
     float valor;
-    printf(nQual quantia que deseja retirar da contan);
-    scanf(%f, &valor);
+    printf("\nQual quantia que deseja retirar da conta?\n");
+    scanf("%f", &valor);
 
-    if(valor=saldo[i]){
+    if(valor<=saldo[i]){
       saldo[i] = saldo[i]-valor;
-      printf(nDinheiro retirado com sucesso!n);
+      printf("\nDinheiro retirado com sucesso!\n");
       break;
     } else {
-      printf(nSaldo insuficiente para realizar o saque!n);
+      printf("\nSaldo insuficiente para realizar o saque!\n");
     break;
     }
 break;
@@ -88,43 +104,50 @@ break;
  }
  
  if(conta[i]!=num){
-    printf(nConta inexistente!n);
+    printf("\nConta inexistente!\n");
   break;
   } 
 
 break;
  
- case 4
- printf(nDigite sua contan);
- scanf(%d, &num);
 
- for( i = 0; icount; i++){
+
+//Quarto caso: transferÃªncia de dinheiro entre as contas cadastradas.
+ case 4:
+ printf("\nDigite sua conta:\n");
+ scanf("%d", &num);
+
+ for( i = 0; i<count; i++){
 
    if(conta[i]==num){
 
      int qtd;
-     printf(nDigite a quantia que deseja transferirn);
-     scanf(%d, &qtd);
+     printf("\nDigite a quantia que deseja transferir:\n");
+     scanf("%d", &qtd);
 
-     if(qtd=saldo[i]){
+     if(qtd<=saldo[i]){
        
-       int ct; conta de transferência
-       saldo[i]=saldo[i]-qtd;
-       printf(nDigite a conta que deseja transferir a quantian);
-       scanf(%d, &ct);
+       int ct; //conta de transferÃªncia
+       printf("\nDigite a conta que deseja transferir a quantia:\n");
+       scanf("%d", &ct);
         
-        for(int o = 0; ocount; o++){
+        for(int o = 0; o<count; o++){
 
           if (conta[o]==ct){
+            saldo[i]=saldo[i]-qtd;                                
             saldo[o] = saldo[o]+qtd;
-            printf(nTransferência concluída com sucesso!n);
+            printf("\nTransferÃªncia concluÃ­da com sucesso!\n");
+            find = false;
             break;
           }
 
         }
+         if(find){
+                printf("\nA conta de recebimento nÃ£o estÃ¡ cadastrada no sistema!\n");
+                        }
 break;
      } else {
-       printf(nSaldo insuficiente para transferência!n);
+       printf("\nSaldo insuficiente para transferÃªncia!\n");
        break;
      }
   break;
@@ -132,22 +155,33 @@ break;
   }
 
 if(conta[i]!=num){
-  printf(nConta inexistente!n);
+  printf("\nConta inexistente!\n");
   break;
 }
 break;
 
- case 5
-  printf(nAs contas cadastradas sãonn);
-  for (i = 0; icount ; i++){
-    printf(%d, saldo R$%.2fn, conta[i], saldo[i]);
+
+
+//Quinto caso: listagem das contas cadastradas, e seus respectivos saldos, no sistema.
+ case 5:
+  printf("\nAs contas cadastradas sÃ£o:\n\n");
+  for (i = 0; i<count ; i++){
+    printf("%d, saldo: R$%.2f\n", conta[i], saldo[i]);
   }
 break;
 
+default:
+printf("\nCÃ³digo invÃ¡lido!\n");
+break;
 }
 
-printf(nDigite qualquer número para continuar e 0 para sair do sistema.n);
-scanf(%d, &resp);
+
+
+
+//VerificaÃ§Ã£o de continuaÃ§Ã£o ou nÃ£o da utilizaÃ§Ã£o do sistema. Efetuada a cada operaÃ§Ã£o.
+printf("\nDigite qualquer nÃºmero para continuar e 0 para sair do sistema.\n");
+scanf("%d", &resp);
+  
   }while(resp!=0);
 
     return 0;
