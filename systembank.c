@@ -2,8 +2,8 @@
 
 
 //System of: Emerson Lucena dos Santos.
-//Science Computer student - UECE.
-//First half.
+//Computer Science student - UECE.
+//First semester.
 //Comments in Portuguese - BR.
 
 int main() {
